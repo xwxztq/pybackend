@@ -1,0 +1,3 @@
+[submodule "climax4music/climax4music"]
+	path = climax4music/climax4music
+	url = git@github.com:xwxztq/climax4music.git
