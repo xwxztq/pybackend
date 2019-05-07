@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('climax/', include('climax4musics.urls')),
+    path('climaxs/', include('climax4musics.urls')),
+    path('wav2mids',include('wav2mids')),
     path('admin/', admin.site.urls),
 ]
