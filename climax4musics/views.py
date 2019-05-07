@@ -25,7 +25,7 @@ def climax(request):
         if filepath == "":
             return HttpResponse("参数错误")
         else:
-            return HttpResponse( get_climax(filepath) )
+            return HttpResponse( get_climax.process_audio(filepath) )
 
     else:
         return HttpResponse('获取资源方式错误')
