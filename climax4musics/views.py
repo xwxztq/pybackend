@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from . import climax4music.get_climax
+from climax4musics.climax import get_climax
 
 def climax(request):
 
@@ -11,8 +11,7 @@ def climax(request):
         if filepath == "":
             return HttpResponse("参数错误")
         else:
-            res = climax4music.get_climax(cfilepath)
-            return HttpResponse(res)
+            return HttpResponse( get_climax(filepath) )
 
     else:
         return HttpResponse('获取资源方式错误')
