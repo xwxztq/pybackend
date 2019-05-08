@@ -28,6 +28,9 @@ def climax(request):
             return HttpResponse( get_climax.process_audio(filepath) )
 
     else:
-        return HttpResponse('获取资源方式错误')
+        response = HttpResponse()
+        response.status_code = 400
+        response.content = "获取资源方式错误"
+        return response
 
 

@@ -18,6 +18,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('climaxs/', include('climax4musics.urls')),
-    path('wav2mids',include('wav2mids')),
+    path('wav2mids',include('wav2mids.urls')),
     path('admin/', admin.site.urls),
 ]
