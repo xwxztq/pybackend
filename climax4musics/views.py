@@ -10,6 +10,7 @@ from climax4musics.climax import get_climax
 
 def climax(request):
 
+
     cur_pwd = os.getcwd()
     if cur_pwd in sys.path:
         pass
