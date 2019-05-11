@@ -7,3 +7,5 @@
 	url = git@github.com:xwxztq/wav2mid.git
 [submodule "wav2mids/w2m"]
 	branch = master
+[submodule "climax4musics/climax"]
+    branch = master
