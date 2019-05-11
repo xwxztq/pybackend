@@ -1,6 +1,9 @@
 [submodule "climax4musics/climax"]
 	path = climax4musics/climax
 	url = git@github.com:xwxztq/climax4music.git
+	branch = master
 [submodule "wav2mids/w2m"]
 	path = wav2mids/w2m
 	url = git@github.com:xwxztq/wav2mid.git
+[submodule "wav2mids/w2m"]
+	branch = master
