@@ -9,3 +9,7 @@
 	branch = master
 [submodule "climax4musics/climax"]
     branch = master
+[submodule "genre4musics/genres"]
+	path = genre4musics/genres
+	url = git@github.com:xwxztq/Music-Genre-Classification.git
+	branch = master
