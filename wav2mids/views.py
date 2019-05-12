@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
+import os
 from django.http import HttpResponse
 from wav2mids.w2m import wav2mid
 
@@ -22,18 +23,22 @@ def get_wav2mid(request):
             # todo: check file exists
 
             if save_path == "":
-
+                save_path = os.path.split(filepath)
                 # todo check the path is leagel
-                result = wav2mid.transfer(filepath)
+
 
             else:
 
                 # todo check the path is leagel
-                result = wav2mid.transfer(filepath, save_path)
+                pass
+            result = wav2mid.transfer(filepath,save_path)
 
             response.status_code = 200
             response.content = result
 
     else:
-        return HttpResponse('获取资源方式错误')
+        response.status_code = 400
+        response.content = "Wrong way to get source"
+
+    return response
 
