@@ -6,6 +6,8 @@ from django.http import HttpResponse
 from wav2mids.w2m import wav2mid
 
 
+
+
 def get_wav2mid(request):
     response = HttpResponse()
 
@@ -23,7 +25,7 @@ def get_wav2mid(request):
             # todo: check file exists
 
             if save_path == "":
-                save_path = os.path.split(filepath)
+                save_path = os.path.split(filepath)[0]
                 # todo check the path is leagel
 
 
