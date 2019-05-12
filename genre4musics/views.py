@@ -4,6 +4,7 @@ from django.shortcuts import render
 
 import os
 from django.http import  HttpResponse
+from .genres import run
 
 
 def get_genre(request):
@@ -12,7 +13,15 @@ def get_genre(request):
 
     if request.method == 'POST':
 
-        pass
+        filepath = request.POST.get('filepath',"")
+
+        try:
+            response.status_code = 200
+            response.content= run.calculate(filepath)
+        except:
+            response.status_code = 500
+            response.content = "Server Error"
+
 
     else:
 
