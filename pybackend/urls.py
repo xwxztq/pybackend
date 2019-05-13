@@ -20,5 +20,6 @@ urlpatterns = [
     path('climaxs', include('climax4musics.urls')),
     path('wav2mids',include('wav2mids.urls')),
     path('genres',include('genre4musics.urls')),
+    path('processions',include('procession4musics.urls')),
     path('admin/', admin.site.urls),
 ]
