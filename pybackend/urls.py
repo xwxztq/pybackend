@@ -22,4 +22,5 @@ urlpatterns = [
     path('genres',include('genre4musics.urls')),
     path('processions',include('procession4musics.urls')),
     path('admin/', admin.site.urls),
+    path('files/',include('files.urls')),
 ]
