@@ -24,9 +24,9 @@ def uploadHandler(request):
 def downloadHander(request):
 
     if request.method == "GET":
-        field = request.GET.get('field')
+        # field = request.GET.get('field')
         name = request.GET.get('name')
-        filename = os.path.join(MEDA_PATH,field,name)
+        filename = os.path.join(MEDA_PATH,name)
         file = open(filename, 'rb')
         response = FileResponse(file)
         response['Content-Type'] = 'application/msword'
