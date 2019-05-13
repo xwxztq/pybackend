@@ -12,12 +12,12 @@ def process_audio(request):
 
     if request.method == 'POST':
 
-        file_path = request.POST.get('file_path', "")
-        min_main = request.POST.get('min_main', "")
-        max_main = request.POST.get('max_main', "")
+        file_path = request.POST.get('filepath', "")
+        min_main = request.POST.get('minmain', "")
+        max_main = request.POST.get('maxmain', "")
         control = request.POST.get('control', "")
         mild = request.POST.get('mild', "")
-        save_path = request.POST.get('save_path', '')
+        save_path = request.POST.get('savepath', '')
 
         if file_path == "" or min_main == "" or max_main == "" or control == "" or mild == "":
             response.status_code = 400
@@ -44,5 +44,8 @@ def process_audio(request):
                     else:
                         response.status_code = 200
                         response.content = mid.process_audio(file_path, min_main, max_main, control, mild, save_path)
+    else:
+        response.status_code = 400
+        response.content = "Wrong way to get source"
 
     return response
