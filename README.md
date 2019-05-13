@@ -8,3 +8,4 @@
 climax4music|ip地址/climaxs|POST|filepath
 wav2mid|ip-address/wav2mids|POST|filepath,save\_path(可选)
 genres|ip-address/genres|POST|filepath
+processions|ip-address/processions|POST|file_name,min_main,max_main,control,mild,save\_path(可选)
