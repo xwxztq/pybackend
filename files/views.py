@@ -26,6 +26,7 @@ def downloadHander(request):
     if request.method == "GET":
         # field = request.GET.get('field')
         name = request.GET.get('name')
+        print(name)
         filename = os.path.join(MEDA_PATH,name)
         file = open(filename, 'rb')
         response = FileResponse(file)
