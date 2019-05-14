@@ -17,11 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('climaxs', include('climax4musics.urls')),
-    path('wav2mids',include('wav2mids.urls')),
-    path('genres',include('genre4musics.urls')),
-    path('processions',include('procession4musics.urls')),
-    path('midi2xmls',include('midi2xmls.urls')),
+    path('climaxs/', include('climax4musics.urls')),
+    path('wav2mids/',include('wav2mids.urls')),
+    path('genres/',include('genre4musics.urls')),
+    path('processions/',include('procession4musics.urls')),
+    path('midi2xmls/',include('midi2xmls.urls')),
     path('admin/', admin.site.urls),
     path('files/',include('files.urls')),
 ]
