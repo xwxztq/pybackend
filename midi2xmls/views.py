@@ -21,17 +21,11 @@ def transfer(request):
         score = music21.converter.parse(fname)
         ext = music21.stream.Stream(score)
         mid_path = os.path.join(MEDA_PATH, "mid", purename[0], ".mid")
-        try:
-            ext.write('xml',fp=mid_path)
-        except:
-            response = HttpResponse()
-            response.status_code = 500
-            response.content = "xml文件写入时出错"
-        else:
-            with open(mid_path,"rb+") as ret:
-                response = FileResponse(ret)
-                response['Content-Type'] = 'application/msword'
-                response['Content-Disposition'] = 'attachment;filename=' + purename[0]+".mid"
+        ext.write('xml',fp=mid_path)
+        with open(mid_path,"rb+") as ret:
+            response = FileResponse(ret)
+            response['Content-Type'] = 'application/msword'
+            response['Content-Disposition'] = 'attachment;filename=' + purename[0]+".mid"
     else:
         response = HttpResponse("HTTP请求错误")
         response.status_code = 400
