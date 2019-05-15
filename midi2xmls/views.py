@@ -22,10 +22,12 @@ def transfer(request):
         ext = music21.stream.Stream(score)
         xml_path = os.path.join(MEDA_PATH, "mid", purename[0]+".xml")
         ext.write('xml',fp=xml_path)
-        ret = open(xml_path,"rb")
-        response = FileResponse(ret)
-        response['Content-Type'] = 'application/msword'
-        response['Content-Disposition'] = 'attachment;filename=' + purename[0]+".xml"
+        response = HttpResponse()
+        response.status_code =200
+        # ret = open(xml_path,"rb")
+        # response = FileResponse(ret)
+        # response['Content-Type'] = 'application/msword'
+        # response['Content-Disposition'] = 'attachment;filename=' + purename[0]+".xml"
     else:
         response = HttpResponse("HTTP请求错误")
         response.status_code = 400
