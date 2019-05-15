@@ -11,7 +11,8 @@ def transfer(request):
 
     print(request.method,"RRRRRRRRRRRRRRRRRRRRRRResquest")
     if request.method == "POST":
-        f1 = request.FILES['file']
+        f1 = request.FILES.get('file')
+        print(len(f1))
         fname = os.path.join(MEDA_PATH, "mid", f1.name)
         purename = f1.name.split('.')
         # fname = 'static/media/car/a.png'
