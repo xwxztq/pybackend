@@ -32,7 +32,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 CORS_ORIGIN_WHITELIST = (
-    "*"
+    "223.80.110.55"
 )
 CORS_ALLOW_CREDENTIALS = False
 # Application definition
