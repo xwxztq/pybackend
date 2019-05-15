@@ -20,7 +20,7 @@ def transfer(request):
                 pic.write(c)
         score = music21.converter.parse(fname)
         ext = music21.stream.Stream(score)
-        xml_path = os.path.join(MEDA_PATH, "mid", purename[0]+".xml")
+        xml_path = os.path.join(MEDA_PATH, "xml", purename[0]+".xml")
         ext.write('xml',fp=xml_path)
         response = HttpResponse()
         response.content = xml_path
