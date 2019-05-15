@@ -23,6 +23,7 @@ def transfer(request):
         xml_path = os.path.join(MEDA_PATH, "mid", purename[0]+".xml")
         ext.write('xml',fp=xml_path)
         response = HttpResponse()
+        response.content = xml_path
         response.status_code =200
         # ret = open(xml_path,"rb")
         # response = FileResponse(ret)
