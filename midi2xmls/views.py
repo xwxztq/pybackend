@@ -24,8 +24,10 @@ def transfer(request):
     print(request.method, "RRRRRRRRRRRRRRRRRRRRRRResquest")
     if request.method == "POST":
         content = request.POST.get('file')
+        print(content)
 
-        the_format,the_content = base64_decode.transfer(content)
+        the_content ,the_format= base64_decode.transfer(content)
+        print(the_format)
 
         if the_format != 'mid':
             response = HttpResponse()
@@ -38,7 +40,7 @@ def transfer(request):
             fname = os.path.join(MEDA_PATH, "mid", pure_name+'.'+the_format)
 
             with open(fname, 'wb') as fout:
-                fout.write(ori_image_data)
+                fout.write(the_content)
 
 
             score = music21.converter.parse(fname)
