@@ -21,9 +21,10 @@ def transfer(request):
         score = music21.converter.parse(fname)
         ext = music21.stream.Stream(score)
         xml_path = os.path.join(MEDA_PATH, "xml", purename[0]+".xml")
+        ret_path = "http://47.99.83.172/files/download?name=xml/"+purename[0]+".xml"
         ext.write('xml',fp=xml_path)
         response = HttpResponse()
-        response.content = xml_path
+        response.content = ret_path
         response.status_code =200
         # ret = open(xml_path,"rb")
         # response = FileResponse(ret)
