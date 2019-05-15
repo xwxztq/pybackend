@@ -21,6 +21,8 @@ MEDA_PATH = "static/"
 
 GET_HEAD = "http://47.99.83.172/files/download?name="
 
+DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
