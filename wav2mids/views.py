@@ -27,8 +27,7 @@ def get_wav2mid(request):
        with open(fname, 'wb') as fout:
            fout.write(the_content)
 
-        save_path = os.path.join(MEDA_PATH,'mid',pure_name+'.mid')
-
+       save_path = os.path.join(MEDA_PATH,'mid',pure_name+'.mid')
        wav2mid.transfer(fname,save_path)
 
        ret_path = GET_HEAD + 'mid/'+pure_name+".mid"
