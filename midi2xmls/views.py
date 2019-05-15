@@ -8,6 +8,8 @@ import music21
 # Create your views here.
 
 def transfer(request):
+
+    print(request.method,"RRRRRRRRRRRRRRRRRRRRRRResquest")
     if request.method == "POST":
         f1 = request.FILES['file']
         fname = os.path.join(MEDA_PATH, "mid", f1.name)
@@ -32,8 +34,11 @@ def transfer(request):
         # response['Content-Disposition'] = 'attachment;filename=' + purename[0]+".xml"
     elif request.method == "OPTIONS":
         response = HttpResponse()
+        response.response['Access-Control-Allow-Method'] = "POST"
+        response['Access-Control-Allow-Origin'] = "*"
         response.status_code = 200
         print ("HHHHHHHHHHHHHHHHHHHHHHHHere I am")
+        return response
     else:
         response = HttpResponse("HTTP请求错误")
         response.status_code = 400
