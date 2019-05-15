@@ -6,6 +6,7 @@ import music21
 from binascii import a2b_base64
 import base64
 import datetime
+import re
 
 
 def ToBase64(file, txt):
