@@ -27,6 +27,6 @@ def decode_base64(data, altchars=b'+/'):
 
 def transfer(data):
     the_head, pure_data = data.splot(',')
-    the_format = the_head.split(';')[0].splot('/')[1]
+    the_format = the_head.split(';')[0].split('/')[1]
 
     return decode_base64(pure_data.encode()), the_format
