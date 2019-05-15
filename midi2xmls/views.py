@@ -51,9 +51,9 @@ def transfer(request):
 
         ori_image_data = decode_base64(content.encode())
 
-        pure_name = str(datetime.datetime.now())+".mid"
+        pure_name = str(datetime.datetime.now())
 
-        fname = os.path.join(MEDA_PATH, "mid", pure_name)
+        fname = os.path.join(MEDA_PATH, "mid", pure_name+".mid")
 
         with open(fname, 'wb') as fout:
             fout.write(ori_image_data)
@@ -61,8 +61,8 @@ def transfer(request):
 
         score = music21.converter.parse(fname)
         ext = music21.stream.Stream(score)
-        xml_path = os.path.join(MEDA_PATH, "xml", pure_name)
-        ret_path = "http://47.99.83.172/files/download?name=xml/" + pure_name
+        xml_path = os.path.join(MEDA_PATH, "xml", pure_name+".xml")
+        ret_path = "http://47.99.83.172/files/download?name=xml/" + pure_name+".xml"
         ext.write('xml', fp=xml_path)
         response = HttpResponse()
         response.content = ret_path
