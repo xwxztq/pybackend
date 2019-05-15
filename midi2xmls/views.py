@@ -32,7 +32,8 @@ def transfer(request):
         # response['Content-Disposition'] = 'attachment;filename=' + purename[0]+".xml"
     elif request.method == "OPTIONS":
         response = HttpResponse()
-        response.status_code = 200;
+        response.status_code = 200
+        print ("HHHHHHHHHHHHHHHHHHHHHHHHere I am")
     else:
         response = HttpResponse("HTTP请求错误")
         response.status_code = 400
