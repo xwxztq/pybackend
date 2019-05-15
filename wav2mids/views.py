@@ -6,12 +6,14 @@ from django.http import HttpResponse
 from wav2mids.w2m import wav2mid
 
 
-
-
 def get_wav2mid(request):
     response = HttpResponse()
 
     if request.method == 'POST':
+
+        # file = request.POST.get('file')
+
+
 
         filepath = request.POST.get('filepath', "")
         save_path = request.POST.get('savepath', "")
@@ -33,7 +35,7 @@ def get_wav2mid(request):
 
                 # todo check the path is leagel
                 pass
-            result = wav2mid.transfer(filepath,save_path)
+            result = wav2mid.transfer(filepath, save_path)
 
             response.status_code = 200
             response.content = result
@@ -43,4 +45,3 @@ def get_wav2mid(request):
         response.content = "Wrong way to get source"
 
     return response
-

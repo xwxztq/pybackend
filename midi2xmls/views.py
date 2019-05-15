@@ -30,6 +30,9 @@ def transfer(request):
         # response = FileResponse(ret)
         # response['Content-Type'] = 'application/msword'
         # response['Content-Disposition'] = 'attachment;filename=' + purename[0]+".xml"
+    elif request.method == "OPTIONS":
+        response = HttpResponse()
+        response.status_code = 200;
     else:
         response = HttpResponse("HTTP请求错误")
         response.status_code = 400
