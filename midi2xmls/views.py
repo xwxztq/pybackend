@@ -3,6 +3,8 @@ import os
 from django.http import FileResponse, HttpResponse
 from pybackend.settings import MEDA_PATH
 import music21
+from binascii import a2b_base64
+import base64
 
 
 # Create your views here.
@@ -11,16 +13,26 @@ def transfer(request):
 
     print(request.method,"RRRRRRRRRRRRRRRRRRRRRRResquest")
     if request.method == "POST":
-        f1 = request.FILES.get('file')
-        print(len(f1))
-        fname = os.path.join(MEDA_PATH, "mid", f1.name)
-        purename = f1.name.split('.')
+        f1 = request.POST.get('file')
+        
+
+        tmpfile = open("tmpfile","w")
+        tmpfile.write(f1)
+        print(f1)
+        fname = os.path.join(MEDA_PATH, "mid", "justtmp.mid")
+        # purename = f1.name.split('.')
         # fname = 'static/media/car/a.png'
-        print(fname)
-        with open(fname, 'wb+') as pic:
+        print("This is filepath",fname)
+        missing_padding =  4 - len(f1)%4
+        print(missing_padding)
+        if missing_padding:
+            f1 += '='*missing_padding
+        print(len(f1))
+        print("123132133212131",len(f2))
+
+        with open(fname, 'wb') as pic:
             # 根据上传的流中的数据一点一点往内存中写
-            for c in f1.chunks():
-                pic.write(c)
+                pic.write(base64.b64decode(f1))
         score = music21.converter.parse(fname)
         ext = music21.stream.Stream(score)
         xml_path = os.path.join(MEDA_PATH, "xml", purename[0]+".xml")
