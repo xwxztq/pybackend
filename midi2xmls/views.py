@@ -1,7 +1,7 @@
 from django.shortcuts import render
 import os
 from django.http import FileResponse, HttpResponse
-from pybackend.settings import MEDA_PATH
+from pybackend.settings import MEDA_PATH,GET_HEAD
 import music21
 from binascii import a2b_base64
 import datetime
@@ -46,7 +46,7 @@ def transfer(request):
             score = music21.converter.parse(fname)
             ext = music21.stream.Stream(score)
             xml_path = os.path.join(MEDA_PATH, "xml", pure_name+".xml")
-            ret_path = "http://47.99.83.172/files/download?name=xml/" + pure_name+".xml"
+            ret_path = GET_HEAD+"xml/" + pure_name+".xml"
             ext.write('xml', fp=xml_path)
             response = HttpResponse()
             response.content = ret_path

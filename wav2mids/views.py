@@ -4,41 +4,37 @@ from django.shortcuts import render
 import os
 from django.http import HttpResponse
 from wav2mids.w2m import wav2mid
-
+from pybackend.settings import MEDA_PATH,GET_HEAD
+import base64_decode
+import datetime
 
 def get_wav2mid(request):
     response = HttpResponse()
 
     if request.method == 'POST':
 
-        # file = request.POST.get('file')
+       the_file = request.POST.get('file')
+       if the_file is None:
+           response.status_code = 400
+           response.content = '参数错误'
+           return  response
+       the_content,the_format = base64_decode.transfer(the_file)
 
+       pure_name = str(datetime.datetime.now())
 
+       fname = os.path.join(MEDA_PATH,the_format,pure_name+'.'+the_format)
 
-        filepath = request.POST.get('filepath', "")
-        save_path = request.POST.get('savepath', "")
+       with open(fname, 'wb') as fout:
+           fout.write(the_content)
 
-        if filepath == "":
-            response.status_code = 400
-            response.content = "params wrong"
+        save_path = os.path.join(MEDA_PATH,'mid',pure_name+'.mid')
 
-        else:
+       wav2mid.transfer(fname,save_path)
 
-            # todo: check file exists
+       ret_path = GET_HEAD + 'mid/'+pure_name+".mid"
 
-            if save_path == "":
-                save_path = os.path.split(filepath)[0]
-                # todo check the path is leagel
-
-
-            else:
-
-                # todo check the path is leagel
-                pass
-            result = wav2mid.transfer(filepath, save_path)
-
-            response.status_code = 200
-            response.content = result
+       response.content =ret_path
+       response.status_code = 200
 
     else:
         response.status_code = 400

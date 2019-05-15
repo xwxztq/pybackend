@@ -19,6 +19,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 MEDA_PATH = "static/"
 
+GET_HEAD = "http://47.99.83.172/files/download?name="
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -32,7 +34,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 CORS_ORIGIN_WHITELIST = (
-    "223.80.110.55"
+    "*"
 )
 CORS_ALLOW_CREDENTIALS = False
 # Application definition
