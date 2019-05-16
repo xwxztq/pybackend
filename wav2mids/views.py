@@ -31,7 +31,7 @@ def get_wav2mid(request):
        print(wav2mid.transfer(fname,save_path))
 
 
-       response.content = save_path
+       response.content =GET_HEAD + "mid/" +pure_name +"-pred.mid"
        response.status_code = 200
 
     else:
