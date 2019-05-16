@@ -28,6 +28,9 @@ def process_audio(request):
         print(control)
         print(mild)
 
+        for i in request.META:
+            print(i)
+
 
         # todo : filepath wasn't been
 
