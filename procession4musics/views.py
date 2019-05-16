@@ -44,28 +44,12 @@ def process_audio(request):
                 response.content = "Format is incorrect"
                 return response
 
-            try:
-                min_main = int(min_main)
-            except:
-                response.status_code = 400
-                response.content = 'invalid parameters:min_main,con not convert to int type'
-
-            else:
-                try:
-                    max_main = int(max_main)
-                except:
-                    response.status_code = 400
-                    response.content = 'invalid parameters:max_main,con not convert to int type'
-                else:
-                    try:
-                        control = int(control)
-                    except:
-                        response.status_code = 400
-                        response.content = 'invalid parameters:control,con not convert to int type'
-                    else:
-                        mid.process_audio(fname, min_main, max_main, control, mild, save_path)
-                        response.status_code = 200
-                        response.content = GET_HEAD + the_format +'/' + pure_name+ 'pro.'+the_format
+            min_main = int(min_main)
+            max_main = int(max_main)
+            control = int(control)
+            mid.process_audio(fname, min_main, max_main, control, mild, save_path)
+            response.status_code = 200
+            response.content = GET_HEAD + the_format +'/' + pure_name+ 'pro.'+the_format
     else:
         response.status_code = 400
         response.content = "Wrong way to get source"
