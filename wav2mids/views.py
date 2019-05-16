@@ -23,7 +23,7 @@ def get_wav2mid(request):
            return  response
        the_content,the_format = base64_decode.transfer(the_file)
 
-       is_webm = request.POST.get('webm')
+       is_webm = request.POST.get('source')
        if is_webm =="webm":
            the_format = "webm"
 
