@@ -10,6 +10,6 @@ wav2mid|ip-address/wav2mids|POST|file|mid文件download下载链接
 genres|ip-address/genres|POST|file|向量or风格名称？
 processions|ip-address/processions|POST|filename,minmain,maxmain,control,mild,savepath(可选)|mid文件or路径？
 upload|ip-address/files/upload|POST|file|状态码以及结果
-download|ip-address/files/download|GET|name|文件
+download|ip-address/files/download|GET|name|文件下载链接
 
 ## 

@@ -7,7 +7,7 @@ import base64_decode
 import datetime
 from django.http import HttpResponse
 from . import mid
-from pybackend.settings import MEDA_PATH
+from pybackend.settings import MEDA_PATH,GET_HEAD
 
 
 def process_audio(request):
@@ -21,7 +21,6 @@ def process_audio(request):
         max_main = request.POST.get('maxmain', "")
         control = request.POST.get('control', "")
         mild = request.POST.get('mild', "")
-        save_path = request.POST.get('savepath', '')
 
 
         # todo : filepath wasn't been
@@ -35,6 +34,7 @@ def process_audio(request):
             pure_name = str(datetime.datetime.now())
 
             fname = os.path.join(MEDA_PATH,the_format,pure_name+'.'+the_format)
+            save_path = os.path.join(MEDA_PATH, the_format, pure_name+'pro.'+the_format)
 
             with open(fname,'wb') as fout:
                 fout.write(the_content)
@@ -63,8 +63,9 @@ def process_audio(request):
                         response.status_code = 400
                         response.content = 'invalid parameters:control,con not convert to int type'
                     else:
+                        mid.process_audio(fname, min_main, max_main, control, mild, save_path)
                         response.status_code = 200
-                        response.content = mid.process_audio(fname, min_main, max_main, control, mild, save_path)
+                        response.content = GET_HEAD + the_format +'/' + pure_name+ 'pro.'+the_format
     else:
         response.status_code = 400
         response.content = "Wrong way to get source"
