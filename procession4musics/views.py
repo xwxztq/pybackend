@@ -23,7 +23,7 @@ def process_audio(request):
         mild = request.POST.get('mild', "")
 
 
-        for i in request.META:
+        for i in request:
             print(type(i),i)
             if isinstance(i,dict):
                 dd = i
