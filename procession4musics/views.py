@@ -22,14 +22,16 @@ def process_audio(request):
         control = request.POST.get('control', "")
         mild = request.POST.get('mild', "")
 
-        print("file",file)
-        print(min_main)
-        print(max_main)
-        print(control)
-        print(mild)
 
         for i in request.META:
-            print(i)
+            if isinstance(i,dict):
+                dd = i
+                break
+        file = dd['file']
+        min_main = dd['minmain']
+        max_main = dd['maxmain']
+        control = dd['control']
+        mild = dd['mild']
 
 
         # todo : filepath wasn't been
