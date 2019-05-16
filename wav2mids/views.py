@@ -33,7 +33,6 @@ def get_wav2mid(request):
 
        response.content =GET_HEAD + "mid/" +pure_name +"-pred.mid"
        response.status_code = 200
-
     else:
         response.status_code = 400
         response.content = "Wrong way to get source"

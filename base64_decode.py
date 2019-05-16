@@ -28,5 +28,7 @@ def decode_base64(data, altchars=b'+/'):
 def transfer(data):
     the_head, pure_data = data.split(',')
     the_format = the_head.split(';')[0].split('/')[1]
+    if data[:4]=='webm':
+        the_format = "webm"
 
     return decode_base64(pure_data.encode()), the_format
