@@ -24,6 +24,7 @@ def process_audio(request):
 
 
         for i in request.META:
+            print(type(i),i)
             if isinstance(i,dict):
                 dd = i
                 break
