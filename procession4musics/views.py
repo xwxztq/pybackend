@@ -22,6 +22,12 @@ def process_audio(request):
         control = request.POST.get('control', "")
         mild = request.POST.get('mild', "")
 
+        print("file",file)
+        print(min_main)
+        print(max_main)
+        print(control)
+        print(mild)
+
 
         # todo : filepath wasn't been
 
