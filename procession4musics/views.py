@@ -3,6 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 
 import os
+import json
 import base64_decode
 import datetime
 from django.http import HttpResponse
@@ -15,19 +16,15 @@ def process_audio(request):
 
     if request.method == 'POST':
 
-
-        file = request.POST.get('file')
-        min_main = request.POST.get('minmain', "")
-        max_main = request.POST.get('maxmain', "")
-        control = request.POST.get('control', "")
-        mild = request.POST.get('mild', "")
-
+        payload  = None
 
         for i in request:
             print(type(i),i)
-            if isinstance(i,dict):
-                dd = i
+            if len(i) >20:
+                payload = i
                 break
+
+        dd = json.loads(payload)
         file = dd['file']
         min_main = dd['minmain']
         max_main = dd['maxmain']
