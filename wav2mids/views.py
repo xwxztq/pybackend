@@ -20,6 +20,10 @@ def get_wav2mid(request):
            return  response
        the_content,the_format = base64_decode.transfer(the_file)
 
+       is_webm = request.POST.get('webm')
+       if is_webm =="webm":
+           the_format = "webm"
+
        pure_name = str(datetime.datetime.now())
 
        fname = os.path.join(MEDA_PATH,the_format,pure_name+'.'+the_format)
