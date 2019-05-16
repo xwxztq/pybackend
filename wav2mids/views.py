@@ -14,6 +14,9 @@ def get_wav2mid(request):
     if request.method == 'POST':
 
        the_file = request.POST.get('file')
+
+       for i in request.POST:
+           print(i)
        if the_file is None:
            response.status_code = 400
            response.content = '参数错误'
