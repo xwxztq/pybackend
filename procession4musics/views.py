@@ -49,7 +49,9 @@ def process_audio(request):
             control = int(control)
             mid.process_audio(fname, min_main, max_main, control, mild, save_path)
             response.status_code = 200
-            response.content = GET_HEAD + the_format +'/' + pure_name+ 'pro.'+the_format
+            ret_path = GET_HEAD + the_format +'/' + pure_name +'pro.'+the_format
+            print(ret_path)
+            response.content =  ret_path
     else:
         response.status_code = 400
         response.content = "Wrong way to get source"
