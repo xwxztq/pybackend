@@ -65,7 +65,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-CORS_ALLOW_CREDENTIALS = False
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ALLOW_METHODS = (
     'DELETE',
@@ -77,7 +78,10 @@ CORS_ALLOW_METHODS = (
     'VIEW',
 )
 
+CORS_ALLOW_CREDENTIALS = True
+
 CORS_ALLOW_HEADERS = (
+    'accept',
     'XMLHttpRequest',
     'X_FILENAME',
     'accept-encoding',
@@ -88,6 +92,8 @@ CORS_ALLOW_HEADERS = (
     'user-agent',
     'x-csrftoken',
     'x-requested-with',
+    'Pragma',
+    'X-Custom-Header',
 )
 
 ROOT_URLCONF = 'pybackend.urls'
