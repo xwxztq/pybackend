@@ -24,8 +24,8 @@ def process_audio(request):
                 payload = i
                 break
 
-        the_dict = json.loads(payload)
-        files =the_dict['file']
+        dd = json.loads(payload)
+        file = dd['file']
         min_main = dd['minmain']
         max_main = dd['maxmain']
         control = dd['control']
@@ -34,12 +34,12 @@ def process_audio(request):
 
         # todo : filepath wasn't been
 
-        if files is None or min_main == "" or max_main == "" or control == "" or mild == "":
+        if file is None or min_main == "" or max_main == "" or control == "" or mild == "":
             response.status_code = 400
             response.content = "Params wrong:please check the necessary params"
         else:
 
-            the_content,the_format = base64_decode.transfer(files)
+            the_content,the_format = base64_decode.transfer(file)
             pure_name = str(datetime.datetime.now())
 
             fname = os.path.join(MEDA_PATH,the_format,pure_name+'.'+the_format)
