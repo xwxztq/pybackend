@@ -30,9 +30,8 @@ def get_wav2mid(request):
        save_path = os.path.join(MEDA_PATH,'mid',pure_name+'-pred.mid')
        print(wav2mid.transfer(fname,save_path))
 
-       ret_path = GET_HEAD + 'mid/'+pure_name+".mid"
 
-       response.content =ret_path
+       response.content = save_path
        response.status_code = 200
 
     else:
