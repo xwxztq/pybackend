@@ -17,11 +17,18 @@ def process_audio(request):
 
     if request.method == 'POST':
 
-        the_file = request.POST.get('file')
-        the_style = request.POST.get('targetStyle')
+        payload = None
 
-        for i in request.POST:
-            print(i)
+        for i in request:
+            print(type(i), i)
+            if len(i) > 20:
+                payload = i
+                break
+
+        dd = json.loads(payload)
+        the_file = dd['file']
+        the_style = dd['targetStyle']
+
         if the_file is None:
             response.status_code = 400
             response.content = '参数错误'
