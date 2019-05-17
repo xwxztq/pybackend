@@ -19,10 +19,12 @@ cur_pwd = os.getcwd()
 w2m = os.path.join(cur_pwd,"wav2mids","w2m")
 climax = os.path.join(cur_pwd,"climax4musics","climax")
 genre = os.path.join(cur_pwd,"genre4musics","genres")
+pro = os.path.join(cur_pwd,"procession4musics")
 
 sys.path.append(w2m)
 sys.path.append(climax)
 sys.path.append(genre)
+sys.path.append(pro)
 
 print(sys.path)
 
