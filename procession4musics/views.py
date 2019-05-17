@@ -9,6 +9,7 @@ import datetime
 from django.http import HttpResponse
 from . import mid
 from pybackend.settings import MEDA_PATH,GET_HEAD
+from .style_transfer import Transfer
 
 
 def process_audio(request):
@@ -16,53 +17,37 @@ def process_audio(request):
 
     if request.method == 'POST':
 
-        payload  = None
+        the_file = request.POST.get('file')
+        the_style = request.POST.get('targetStyle')
 
-        for i in request:
-            print(type(i),i)
-            if len(i) >20:
-                payload = i
-                break
-
-        dd = json.loads(payload)
-        file = dd['file']
-        min_main = dd['minmain']
-        max_main = dd['maxmain']
-        control = dd['control']
-        mild = dd['mild']
-
-
-        # todo : filepath wasn't been
-
-        if file is None or min_main == "" or max_main == "" or control == "" or mild == "":
+        for i in request.POST:
+            print(i)
+        if the_file is None:
             response.status_code = 400
-            response.content = "Params wrong:please check the necessary params"
-        else:
+            response.content = '参数错误'
+            return response
+        the_content, the_format = base64_decode.transfer(the_file)
 
-            the_content,the_format = base64_decode.transfer(file)
-            pure_name = str(datetime.datetime.now())
+        is_webm = request.POST.get('source')
+        if is_webm == "webm":
+            the_format = "webm"
 
-            fname = os.path.join(MEDA_PATH,the_format,pure_name+'.'+the_format)
-            save_path = os.path.join(MEDA_PATH, the_format, pure_name+'pro.'+the_format)
+        pure_name = str(datetime.datetime.now())
 
-            with open(fname,'wb') as fout:
-                fout.write(the_content)
+        fname = os.path.join(MEDA_PATH, the_format, pure_name + '.' + the_format)
 
-            if the_format != "mid":
-                response.status_code = 400
-                response.content = "Format is incorrect"
-                return response
+        with open(fname, 'wb') as fout:
+            fout.write(the_content)
 
-            min_main = int(min_main)
-            max_main = int(max_main)
-            control = int(control)
-            mid.process_audio(fname, min_main, max_main, control, mild, save_path)
-            response.status_code = 200
-            ret_path = GET_HEAD + the_format +'/' + pure_name +'pro.'+the_format
-            print(ret_path)
-            response.content =  GET_HEAD + the_format + '/' + pure_name +'.'+ the_format
+        save_path = os.path.join(MEDA_PATH, 'mid', pure_name + '-pro.mid')
+        print(Transfer(fname, the_style,save_path))
+
+        response.content = GET_HEAD + "mid/" + pure_name + "-pro.mid"
+        response.status_code = 200
     else:
         response.status_code = 400
         response.content = "Wrong way to get source"
 
     return response
+
+
