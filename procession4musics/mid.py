@@ -35,11 +35,11 @@ def process_audio(path, Min_main, Max_main, Control, Mild, save_path=""):
     def Add_Notes(Track, Category, Note, Time):
         if (Category == 'on'):
             if (Note >= Min_main and Note <= Max_main):
-                Track.append(Message('note_on', channel=0, note=Note, velocity=90, time=Time))  # Main note
+                Track.append(Message('note_on', channel=0, note=Note, velocity=120, time=Time))  # Main note
             else:
-                Track.append(Message('note_on', channel=0, note=Note, velocity=48, time=Time))  # Assistant note
+                Track.append(Message('note_on', channel=0, note=Note, velocity=64, time=Time))  # Assistant note
         elif (Category == 'off'):
-            Track.append(Message('note_off', channel=0, note=Note, velocity=48, time=Time))  # End of note
+            Track.append(Message('note_off', channel=0, note=Note, velocity=64, time=Time))  # End of note
         return Track
 
     Song = MidiFile(path)  # load the midi file

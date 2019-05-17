@@ -60,7 +60,7 @@ def process_audio(request):
             response.status_code = 200
             ret_path = GET_HEAD + the_format +'/' + pure_name +'pro.'+the_format
             print(ret_path)
-            response.content =  ret_path
+            response.content =  GET_HEAD + the_format + '/' + pure_name +'.'+ the_format
     else:
         response.status_code = 400
         response.content = "Wrong way to get source"
