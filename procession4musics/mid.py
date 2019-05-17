@@ -46,7 +46,7 @@ def process_audio(path, Min_main, Max_main, Control, Mild, save_path=""):
     for i, track in enumerate(Song.tracks):
         if (i == 0):
             Main_track = track  # the main track of midi music
-    Onoff_track = [str(x).split(' ') for x in Main_track][:-1]
+    Onoff_track = [str(x).split(' ') for x in Main_track if str(x)[:5] == 'note_'][:-1]
     Category, Note, Time = [x[0][5:] for x in Onoff_track], [int(x[2][5:]) for x in Onoff_track], [int(x[-1][5:]) for x
                                                                                                    in Onoff_track]
     Track = Initialize_Track()
