@@ -3,13 +3,14 @@ from django.shortcuts import render
 # Create your views here.
 
 import os
+import datetime
 from  django.http import  HttpResponse
 from django.http import FileResponse
 from pybackend.settings import MEDA_PATH
 
 def uploadHandler(request):
     if request.method == "POST":
-        f1 = request.FILES['pic1']
+        f1 = request.FILES['file']
         fname = os.path.join(MEDA_PATH,f1.name)
         #fname = 'static/media/car/a.png'
         print(fname)
@@ -38,3 +39,25 @@ def downloadHander(request):
         response.status_code = 400
         response.content = "Wrong way to get data"
         return response
+
+def midi2wav(request):
+
+    response = HttpResponse()
+
+    if request.method == 'POST':
+
+        the_file = request.POST.get('file')
+        if the_file is None:
+            response.status_code = 400
+            response.content = '参数错误'
+            return response
+        the_content, the_format = base64_decode.transfer(the_file)
+
+        pure_name = str(datetime.datetime.now())
+        fname = os.path.join(MEDA_PATH,the_format,pure_name+'.'+the_format )
+        sname = os.path.join(MEDA_PATH,'wav',pure_name+".wav")
+
+        with open(fname,'wb') as fout:
+            fout.write(the_content)
+
+
